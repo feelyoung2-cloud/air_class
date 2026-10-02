@@ -73,7 +73,7 @@ export const TeacherDashboard: React.FC<TeacherDashboardProps> = ({
       setIsAuthenticated(true);
       setPasswordInput('');
     } else {
-      setAuthError('비밀번호가 일치하지 않습니다. (초기 비밀번호: science1234)');
+      setAuthError('비밀번호가 일치하지 않습니다. (기본 비밀번호: 1111)');
     }
   };
 
@@ -187,7 +187,7 @@ export const TeacherDashboard: React.FC<TeacherDashboardProps> = ({
                   type="password"
                   value={passwordInput}
                   onChange={(e) => setPasswordInput(e.target.value)}
-                  placeholder="비밀번호 입력 (기본: science1234)"
+                  placeholder="비밀번호 입력 (기본: 1111)"
                   className="w-full px-4 py-3 rounded-2xl border-2 border-slate-200 focus:border-indigo-500 focus:outline-hidden text-base font-medium shadow-xs"
                 />
                 <KeyRound className="w-5 h-5 text-slate-400 absolute right-3.5 top-1/2 -translate-y-1/2" />
