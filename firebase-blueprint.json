@@ -1,0 +1,104 @@
+{
+  "entities": {
+    "Session": {
+      "title": "Session",
+      "description": "A science classroom experiment session",
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string",
+          "description": "Unique session identifier",
+          "maxLength": 64
+        },
+        "name": {
+          "type": "string",
+          "description": "Name of the classroom session",
+          "maxLength": 100
+        },
+        "createdAt": {
+          "type": "string",
+          "description": "ISO timestamp of session creation"
+        }
+      },
+      "required": ["id", "name"]
+    },
+    "Student": {
+      "title": "Student",
+      "description": "Student state and progress in a virtual experiment session",
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string",
+          "description": "Student UID or unique student ID",
+          "maxLength": 128
+        },
+        "nickname": {
+          "type": "string",
+          "description": "Student friendly nickname",
+          "maxLength": 30
+        },
+        "currentStage": {
+          "type": "number",
+          "description": "Current stage level the student is working on (1-5)"
+        },
+        "maxStage": {
+          "type": "number",
+          "description": "Highest stage unlocked"
+        },
+        "attempts": {
+          "type": "number",
+          "description": "Total number of challenge attempts"
+        },
+        "completed": {
+          "type": "boolean",
+          "description": "Whether all 5 stages have been completed"
+        },
+        "totalTimeSeconds": {
+          "type": "number",
+          "description": "Total time spent completing stages in seconds"
+        },
+        "lastActive": {
+          "type": "string",
+          "description": "ISO timestamp of last activity"
+        }
+      },
+      "required": ["id", "nickname", "currentStage"]
+    },
+    "TestConnection": {
+      "title": "TestConnection",
+      "description": "Health check document used for CRUD testing by the teacher dashboard",
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string",
+          "description": "Document ID",
+          "maxLength": 64
+        },
+        "message": {
+          "type": "string",
+          "description": "Test verification message",
+          "maxLength": 200
+        },
+        "testedAt": {
+          "type": "string",
+          "description": "ISO timestamp of test execution"
+        }
+      },
+      "required": ["id", "message"]
+    }
+  },
+  "firestore": {
+    "/sessions/{sessionId}": {
+      "schema": "Session",
+      "description": "Collection of classroom experiment sessions"
+    },
+    "/sessions/{sessionId}/students/{studentId}": {
+      "schema": "Student",
+      "description": "Subcollection of students in a given session"
+    },
+    "/test_connection/{testId}": {
+      "schema": "TestConnection",
+      "description": "Collection for checking Firestore read/write capabilities"
+    }
+  }
+}
